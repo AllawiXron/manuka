@@ -171,35 +171,35 @@ setInterval(updateCountdown, 1000);
 
 // ===== Live Viewers Counter =====
 const liveCount = document.getElementById('live-count');
-let currentViewers = 38 + Math.floor(Math.random() * 30);
+let currentViewers = 7 + Math.floor(Math.random() * 5);
 if (liveCount) liveCount.textContent = currentViewers;
 
 function fluctuateViewers() {
   if (!liveCount) return;
-  const change = Math.floor(Math.random() * 7) - 3;
-  currentViewers = Math.max(34, Math.min(73, currentViewers + change));
+  const change = Math.floor(Math.random() * 3) - 1; // subtle change (-1, 0, +1)
+  currentViewers = Math.max(5, Math.min(14, currentViewers + change));
   liveCount.textContent = currentViewers;
-  setTimeout(fluctuateViewers, 5000 + Math.random() * 7000);
+  setTimeout(fluctuateViewers, 8000 + Math.random() * 10000);
 }
-setTimeout(fluctuateViewers, 5000 + Math.random() * 7000);
+setTimeout(fluctuateViewers, 8000 + Math.random() * 10000);
 
 // ===== Sold Today Counter =====
 const soldCount = document.getElementById('sold-count');
-let currentSold = 47 + Math.floor(Math.random() * 17);
+let currentSold = 14 + Math.floor(Math.random() * 5);
 if (soldCount) soldCount.textContent = currentSold;
 
 function incrementSold() {
   if (!soldCount) return;
   currentSold += 1;
   soldCount.textContent = currentSold;
-  setTimeout(incrementSold, 45000 + Math.random() * 45000);
+  setTimeout(incrementSold, 120000 + Math.random() * 180000); // 2-5 minutes
 }
-setTimeout(incrementSold, 45000 + Math.random() * 45000);
+setTimeout(incrementSold, 120000 + Math.random() * 180000);
 
 // ===== Subtle Recent Order Toast =====
 const iraqiNames = ['أحمد', 'محمد', 'علي', 'حسين', 'عمار', 'مصطفى', 'كرار', 'حيدر', 'زيد', 'عباس', 'ياسر', 'مهند', 'حسن', 'جعفر', 'سجاد', 'عمر', 'أمير'];
 const iraqiCities = ['بغداد', 'البصرة', 'أربيل', 'النجف', 'كربلاء', 'الموصل', 'الديوانية', 'الناصرية', 'السماوة', 'بابل', 'واسط', 'ميسان', 'ديالى', 'كركوك', 'الكوت', 'السليمانية'];
-const timeAgo = ['قبل دقيقة', 'قبل دقيقتين', 'قبل 3 دقائق', 'قبل 5 دقائق'];
+const timeAgo = ['قبل 5 دقائق', 'قبل 10 دقائق', 'قبل 15 دقيقة', 'قبل 20 دقيقة'];
 const orderProducts = ['علبة عسل مانوكا (115,000 د.ع)', 'العرض الذهبي (علبتين + هدية)'];
 
 function getRandomItem(arr) {
@@ -240,12 +240,14 @@ function showOrderToast() {
   setTimeout(() => {
     toast.classList.remove('toast-show');
     setTimeout(() => toast.remove(), 400);
-  }, 4500);
+  }, 4000);
 
-  setTimeout(showOrderToast, 10000 + Math.random() * 8000);
+  // Appears very infrequently (every 1 to 2.5 minutes) to feel completely natural
+  setTimeout(showOrderToast, 60000 + Math.random() * 90000);
 }
 
-setTimeout(showOrderToast, 3000);
+// Initial toast appears 28 seconds after page load
+setTimeout(showOrderToast, 28000);
 
 // ===== Exit Intent Popup (115K -> 113K Discount) =====
 let exitPopupShown = false; // Allow showing on exit attempt per session test
